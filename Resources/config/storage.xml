@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ This file is part of the Miky package.
+
+ (c) Paweł Jędrzejewski
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+
+-->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="adevis.storage.cookie.class">Miky\Component\Storage\CookieStorage</parameter>
+        <parameter key="adevis.storage.doctrine_cache.class">Miky\Component\Storage\DoctrineCacheStorage</parameter>
+        <parameter key="adevis.storage.session.class">Miky\Component\Storage\SessionStorage</parameter>
+    </parameters>
+
+    <services>
+        <service id="adevis.storage.cookie" class="%adevis.storage.cookie.class%" public="false">
+            <call method="setRequest">
+                <argument type="service" id="request" on-invalid="null" strict="false" />
+            </call>
+        </service>
+
+        <service id="adevis.storage.session" class="%adevis.storage.session.class%" public="false">
+            <argument type="service" id="session" />
+        </service>
+    </services>
+
+</container>

@@ -1,0 +1,33 @@
+<?php
+
+/*
+ * This file is part of the Miky package.
+ *
+ * (c) Paweł Jędrzejewski
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Miky\Bundle\ResourceBundle\Controller;
+
+use Miky\Component\Resource\Factory\FactoryInterface;
+
+
+class NewResourceFactory implements NewResourceFactoryInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function create(RequestConfiguration $requestConfiguration, FactoryInterface $factory)
+    {
+        if (null === $method = $requestConfiguration->getFactoryMethod()) {
+            return $factory->createNew();
+        }
+
+        $callable = [$factory, $method];
+        $arguments = $requestConfiguration->getFactoryArguments();
+
+        return call_user_func_array($callable, $arguments);
+    }
+}

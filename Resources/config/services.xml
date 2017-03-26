@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ This file is part of the Miky package.
+
+ (c) Paweł Jędrzejewski
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+
+-->
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="adevis.resource_registry.class">Miky\Component\Resource\Metadata\Registry</parameter>
+
+        <parameter key="adevis.mongodb_.repository.class">Miky\Bundle\ResourceBundle\Doctrine\ODM\MongoDB\DocumentRepository</parameter>
+
+        <parameter key="adevis.expression_language.class">Miky\Bundle\ResourceBundle\ExpressionLanguage\ExpressionLanguage</parameter>
+
+        <parameter key="adevis.form.extension.collection.class">Miky\Bundle\ResourceBundle\Form\Extension\CollectionExtension</parameter>
+        <parameter key="adevis.form.type.resource_to_hidden_identifier.class">Miky\Bundle\ResourceBundle\Form\Type\ResourceToHiddenIdentifierType</parameter>
+        <parameter key="adevis.form.type.resource_to_identifier.class">Miky\Bundle\ResourceBundle\Form\Type\ResourceToIdentifierType</parameter>
+        <parameter key="adevis.form.extension.date.class">Miky\Bundle\ResourceBundle\Form\Extension\DateExtension</parameter>
+        <parameter key="adevis.form.type.resource_choice.class">Miky\Bundle\ResourceBundle\Form\Type\ResourceChoiceType</parameter>
+
+        <parameter key="adevis.event_subscriber.resource_delete.class">Miky\Bundle\ResourceBundle\EventListener\ResourceDeleteSubscriber</parameter>
+
+        <parameter key="adevis.validator.enabled.class">Miky\Bundle\ResourceBundle\Validator\EnabledValidator</parameter>
+        <parameter key="adevis.validator.disabled.class">Miky\Bundle\ResourceBundle\Validator\DisabledValidator</parameter>
+
+        <!-- Miky State Machine -->
+        <parameter key="adevis.state_machine.class">Miky\Component\Resource\StateMachine\StateMachine</parameter>
+
+        <parameter key="symfony.expression.language.class">Miky\Bundle\ResourceBundle\ExpressionLanguage\ExpressionLanguage</parameter>
+    </parameters>
+
+    <services>
+        <service id="adevis.resource_registry" class="%adevis.resource_registry.class%" />
+
+        <service id="adevis.expression_language" class="%adevis.expression_language.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <service id="adevis.event_subscriber.resource_delete" class="%adevis.event_subscriber.resource_delete.class%">
+            <argument type="service" id="router" />
+            <argument type="service" id="session" />
+            <argument type="service" id="translator" />
+            <argument type="service" id="fos_rest.view_handler" />
+            <tag name="kernel.event_subscriber" event="kernel.exception" />
+        </service>
+
+
+        <service id="adevis.form.extension.collection"
+                 class="%adevis.form.extension.collection.class%">
+            <tag name="form.type_extension" alias="collection" />
+        </service>
+
+        <service id="adevis.validator.enabled" class="%adevis.validator.enabled.class%">
+            <tag name="validator.constraint_validator" alias="adevis_resource_enabled_validator" />
+        </service>
+        <service id="adevis.validator.disabled" class="%adevis.validator.disabled.class%">
+            <tag name="validator.constraint_validator" alias="adevis_resource_disabled_validator" />
+        </service>
+    </services>
+</container>

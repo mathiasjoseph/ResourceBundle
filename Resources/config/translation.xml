@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ This file is part of the Miky package.
+
+ (c) Paweł Jędrzejewski
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+
+-->
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="adevis.translation.translatable_listener.doctrine.orm.class">Miky\Bundle\ResourceBundle\EventListener\ORMTranslatableListener</parameter>
+        <parameter key="adevis.translation.translatable_listener.doctrine.mongodb_odm.class">Miky\Bundle\ResourceBundle\EventListener\MongoDBODMTranslatableListener</parameter>
+
+        <parameter key="adevis.translation.locale_provider.request.class">Miky\Bundle\ResourceBundle\Provider\RequestLocaleProvider</parameter>
+        <parameter key="adevis.translation.locales_provider.array.class">Miky\Bundle\ResourceBundle\Provider\ArrayLocalesProvider</parameter>
+        <parameter key="adevis.form.type.resource_translations.class">Miky\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType</parameter>
+    </parameters>
+
+    <services>
+        <service id="adevis.translation.translatable_listener.doctrine.orm" class="%adevis.translation.translatable_listener.doctrine.orm.class%">
+            <argument type="service" id="adevis.resource_registry" />
+            <argument type="service" id="adevis.translation.locale_provider" />
+            <tag name="doctrine.event_subscriber" connection="default" priority="99" />
+        </service>
+        <service id="adevis.translation.translatable_listener.doctrine.mongodb_odm" class="%adevis.translation.translatable_listener.doctrine.mongodb_odm.class%">
+            <argument type="service" id="adevis.resource_registry" />
+            <argument type="service" id="adevis.translation.locale_provider" />
+            <tag name="doctrine_mongodb.odm.event_subscriber" connection="default" priority="99" />
+        </service>
+
+        <service id="adevis.translation.locale_provider.request" class="%adevis.translation.locale_provider.request.class%">
+            <argument>%adevis.translation.default_locale%</argument>
+            <tag name="kernel.event_subscriber" priority="98" />
+        </service>
+
+        <service id="adevis.translation.locales_provider.array" class="%adevis.translation.locales_provider.array.class%" >
+            <argument>%adevis.translation.available_locales%</argument>
+        </service>
+        <service id="adevis.form.type.resource_translations" class="%adevis.form.type.resource_translations.class%">
+            <argument type="service" id="adevis.translation.locale_provider"/>
+            <argument type="service" id="adevis.translation.available_locales_provider"/>
+            <tag name="form.type" alias="adevis_translations" />
+        </service>
+
+    </services>
+</container>

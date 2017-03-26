@@ -1,0 +1,8 @@
+# This file is part of the Miky package.
+# (c) Paweł Jędrzejewski
+
+adevis:
+    resource:
+        create: '%resource% foi criado com sucesso.'
+        update: '%resource% foi atualizado com sucesso.'
+        delete: '%resource% foi apagado com sucesso.'

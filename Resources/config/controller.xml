@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ This file is part of the Miky package.
+
+ (c) Paweł Jędrzejewski
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+
+-->
+
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://symfony.com/schema/dic/services"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="adevis.resource_controller.request_configuration.class">Miky\Bundle\ResourceBundle\Controller\RequestConfiguration</parameter>
+        <parameter key="adevis.resource_controller.parameters_parser.class">Miky\Bundle\ResourceBundle\Controller\ParametersParser</parameter>
+        <parameter key="adevis.resource_controller.request_configuration_factory.class">Miky\Bundle\ResourceBundle\Controller\RequestConfigurationFactory</parameter>
+        <parameter key="adevis.resource_controller.new_resource_factory.class">Miky\Bundle\ResourceBundle\Controller\NewResourceFactory</parameter>
+        <parameter key="adevis.resource_controller.single_resource_provider.class">Miky\Bundle\ResourceBundle\Controller\SingleResourceProvider</parameter>
+        <parameter key="adevis.resource_controller.resources_resolver.class">Miky\Bundle\ResourceBundle\Controller\ResourcesResolver</parameter>
+        <parameter key="adevis.resource_controller.resources_collection_provider.class">Miky\Bundle\ResourceBundle\Controller\ResourcesCollectionProvider</parameter>
+        <parameter key="adevis.resource_controller.form_factory.class">Miky\Bundle\ResourceBundle\Controller\ResourceFormFactory</parameter>
+        <parameter key="adevis.resource_controller.redirect_handler.class">Miky\Bundle\ResourceBundle\Controller\RedirectHandler</parameter>
+        <parameter key="adevis.resource_controller.authorization_checker.disabled.class">Miky\Bundle\ResourceBundle\Controller\DisabledAuthorizationChecker</parameter>
+        <parameter key="adevis.resource_controller.flash_helper.class">Miky\Bundle\ResourceBundle\Controller\FlashHelper</parameter>
+        <parameter key="adevis.resource_controller.event_dispatcher.class">Miky\Bundle\ResourceBundle\Controller\EventDispatcher</parameter>
+        <parameter key="adevis.resource_controller.pagerfanta_representation_factory.class">Hateoas\Representation\Factory\PagerfantaFactory</parameter>
+        <parameter key="adevis.resource_controller.view_handler.class">Miky\Bundle\ResourceBundle\Controller\ViewHandler</parameter>
+        <parameter key="adevis.resource_controller.state_machine.class">Miky\Bundle\ResourceBundle\Controller\StateMachine</parameter>
+    </parameters>
+
+    <services>
+        <!-- tmp -->
+        <service id="adevis.controller.parameters" class="Miky\Bundle\ResourceBundle\Controller\Parameters" />
+        <service id="adevis.resource_controller.parameters_parser" class="%adevis.resource_controller.parameters_parser.class%">
+            <argument type="service" id="adevis.expression_language" />
+        </service>
+        <service id="adevis.resource_controller.request_configuration_factory" class="%adevis.resource_controller.request_configuration_factory.class%">
+            <argument type="service" id="adevis.resource_controller.parameters_parser" />
+            <argument>%adevis.resource_controller.request_configuration.class%</argument>
+            <argument>%adevis.resource.settings%</argument>
+        </service>
+        <service id="adevis.resource_controller.new_resource_factory" class="%adevis.resource_controller.new_resource_factory.class%" />
+        <service id="adevis.resource_controller.single_resource_provider" class="%adevis.resource_controller.single_resource_provider.class%" />
+        <service id="adevis.resource_controller.pagerfanta_representation_factory" class="%adevis.resource_controller.pagerfanta_representation_factory.class%" />
+        <service id="adevis.resource_controller.resources_resolver" class="%adevis.resource_controller.resources_resolver.class%" />
+        <service id="adevis.resource_controller.resources_collection_provider" class="%adevis.resource_controller.resources_collection_provider.class%">
+            <argument type="service" id="adevis.resource_controller.resources_resolver" />
+            <argument type="service" id="adevis.resource_controller.pagerfanta_representation_factory" />
+        </service>
+        <service id="adevis.resource_controller.form_factory" class="%adevis.resource_controller.form_factory.class%">
+            <argument type="service" id="form.factory" />
+        </service>
+        <service id="adevis.resource_controller.redirect_handler" class="%adevis.resource_controller.redirect_handler.class%">
+            <argument type="service" id="router" />
+        </service>
+        <service id="adevis.resource_controller.authorization_checker.disabled" class="%adevis.resource_controller.authorization_checker.disabled.class%" />
+        <service id="adevis.resource_controller.flash_helper" class="%adevis.resource_controller.flash_helper.class%">
+            <argument type="service" id="session" />
+            <argument type="service" id="translator" />
+        </service>
+        <service id="adevis.resource_controller.event_dispatcher" class="%adevis.resource_controller.event_dispatcher.class%">
+            <argument type="service" id="event_dispatcher" />
+        </service>
+        <service id="adevis.resource_controller.view_handler" class="%adevis.resource_controller.view_handler.class%">
+            <argument type="service" id="fos_rest.view_handler" />
+        </service>
+        <service id="adevis.resource_controller.state_machine" class="%adevis.resource_controller.state_machine.class%">
+            <argument type="service" id="sm.factory" />
+        </service>
+    </services>
+</container>

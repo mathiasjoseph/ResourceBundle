@@ -1,7 +1,7 @@
 # This file is part of the Miky package.
 # (c) Paweł Jędrzejewski
 
-adevis:
+miky:
     resource:
         not_enabled: Verilen kaynak devre dışı
         not_disabled: Verilen kaynak etkin

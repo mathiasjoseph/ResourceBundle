@@ -22,7 +22,7 @@ use Symfony\Component\Form\FormFactoryInterface;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  * @author Hugo Hamon <hugo.hamon@sensio.com>
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  */
 class DefaultFormFactory
 {

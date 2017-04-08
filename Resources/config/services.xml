@@ -17,39 +17,39 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="adevis.resource_registry.class">Miky\Component\Resource\Metadata\Registry</parameter>
+        <parameter key="miky.resource_registry.class">Miky\Component\Resource\Metadata\Registry</parameter>
 
-        <parameter key="adevis.mongodb_.repository.class">Miky\Bundle\ResourceBundle\Doctrine\ODM\MongoDB\DocumentRepository</parameter>
+        <parameter key="miky.mongodb_.repository.class">Miky\Bundle\ResourceBundle\Doctrine\ODM\MongoDB\DocumentRepository</parameter>
 
-        <parameter key="adevis.expression_language.class">Miky\Bundle\ResourceBundle\ExpressionLanguage\ExpressionLanguage</parameter>
+        <parameter key="miky.expression_language.class">Miky\Bundle\ResourceBundle\ExpressionLanguage\ExpressionLanguage</parameter>
 
-        <parameter key="adevis.form.extension.collection.class">Miky\Bundle\ResourceBundle\Form\Extension\CollectionExtension</parameter>
-        <parameter key="adevis.form.type.resource_to_hidden_identifier.class">Miky\Bundle\ResourceBundle\Form\Type\ResourceToHiddenIdentifierType</parameter>
-        <parameter key="adevis.form.type.resource_to_identifier.class">Miky\Bundle\ResourceBundle\Form\Type\ResourceToIdentifierType</parameter>
-        <parameter key="adevis.form.extension.date.class">Miky\Bundle\ResourceBundle\Form\Extension\DateExtension</parameter>
-        <parameter key="adevis.form.type.resource_choice.class">Miky\Bundle\ResourceBundle\Form\Type\ResourceChoiceType</parameter>
+        <parameter key="miky.form.extension.collection.class">Miky\Bundle\ResourceBundle\Form\Extension\CollectionExtension</parameter>
+        <parameter key="miky.form.type.resource_to_hidden_identifier.class">Miky\Bundle\ResourceBundle\Form\Type\ResourceToHiddenIdentifierType</parameter>
+        <parameter key="miky.form.type.resource_to_identifier.class">Miky\Bundle\ResourceBundle\Form\Type\ResourceToIdentifierType</parameter>
+        <parameter key="miky.form.extension.date.class">Miky\Bundle\ResourceBundle\Form\Extension\DateExtension</parameter>
+        <parameter key="miky.form.type.resource_choice.class">Miky\Bundle\ResourceBundle\Form\Type\ResourceChoiceType</parameter>
 
-        <parameter key="adevis.event_subscriber.resource_delete.class">Miky\Bundle\ResourceBundle\EventListener\ResourceDeleteSubscriber</parameter>
+        <parameter key="miky.event_subscriber.resource_delete.class">Miky\Bundle\ResourceBundle\EventListener\ResourceDeleteSubscriber</parameter>
 
-        <parameter key="adevis.validator.enabled.class">Miky\Bundle\ResourceBundle\Validator\EnabledValidator</parameter>
-        <parameter key="adevis.validator.disabled.class">Miky\Bundle\ResourceBundle\Validator\DisabledValidator</parameter>
+        <parameter key="miky.validator.enabled.class">Miky\Bundle\ResourceBundle\Validator\EnabledValidator</parameter>
+        <parameter key="miky.validator.disabled.class">Miky\Bundle\ResourceBundle\Validator\DisabledValidator</parameter>
 
         <!-- Miky State Machine -->
-        <parameter key="adevis.state_machine.class">Miky\Component\Resource\StateMachine\StateMachine</parameter>
+        <parameter key="miky.state_machine.class">Miky\Component\Resource\StateMachine\StateMachine</parameter>
 
         <parameter key="symfony.expression.language.class">Miky\Bundle\ResourceBundle\ExpressionLanguage\ExpressionLanguage</parameter>
     </parameters>
 
     <services>
-        <service id="adevis.resource_registry" class="%adevis.resource_registry.class%" />
+        <service id="miky.resource_registry" class="%miky.resource_registry.class%" />
 
-        <service id="adevis.expression_language" class="%adevis.expression_language.class%">
+        <service id="miky.expression_language" class="%miky.expression_language.class%">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
         </service>
 
-        <service id="adevis.event_subscriber.resource_delete" class="%adevis.event_subscriber.resource_delete.class%">
+        <service id="miky.event_subscriber.resource_delete" class="%miky.event_subscriber.resource_delete.class%">
             <argument type="service" id="router" />
             <argument type="service" id="session" />
             <argument type="service" id="translator" />
@@ -58,16 +58,16 @@
         </service>
 
 
-        <service id="adevis.form.extension.collection"
-                 class="%adevis.form.extension.collection.class%">
+        <service id="miky.form.extension.collection"
+                 class="%miky.form.extension.collection.class%">
             <tag name="form.type_extension" alias="collection" />
         </service>
 
-        <service id="adevis.validator.enabled" class="%adevis.validator.enabled.class%">
-            <tag name="validator.constraint_validator" alias="adevis_resource_enabled_validator" />
+        <service id="miky.validator.enabled" class="%miky.validator.enabled.class%">
+            <tag name="validator.constraint_validator" alias="miky_resource_enabled_validator" />
         </service>
-        <service id="adevis.validator.disabled" class="%adevis.validator.disabled.class%">
-            <tag name="validator.constraint_validator" alias="adevis_resource_disabled_validator" />
+        <service id="miky.validator.disabled" class="%miky.validator.disabled.class%">
+            <tag name="validator.constraint_validator" alias="miky_resource_disabled_validator" />
         </service>
     </services>
 </container>

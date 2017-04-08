@@ -17,38 +17,38 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="adevis.translation.translatable_listener.doctrine.orm.class">Miky\Bundle\ResourceBundle\EventListener\ORMTranslatableListener</parameter>
-        <parameter key="adevis.translation.translatable_listener.doctrine.mongodb_odm.class">Miky\Bundle\ResourceBundle\EventListener\MongoDBODMTranslatableListener</parameter>
+        <parameter key="miky.translation.translatable_listener.doctrine.orm.class">Miky\Bundle\ResourceBundle\EventListener\ORMTranslatableListener</parameter>
+        <parameter key="miky.translation.translatable_listener.doctrine.mongodb_odm.class">Miky\Bundle\ResourceBundle\EventListener\MongoDBODMTranslatableListener</parameter>
 
-        <parameter key="adevis.translation.locale_provider.request.class">Miky\Bundle\ResourceBundle\Provider\RequestLocaleProvider</parameter>
-        <parameter key="adevis.translation.locales_provider.array.class">Miky\Bundle\ResourceBundle\Provider\ArrayLocalesProvider</parameter>
-        <parameter key="adevis.form.type.resource_translations.class">Miky\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType</parameter>
+        <parameter key="miky.translation.locale_provider.request.class">Miky\Bundle\ResourceBundle\Provider\RequestLocaleProvider</parameter>
+        <parameter key="miky.translation.locales_provider.array.class">Miky\Bundle\ResourceBundle\Provider\ArrayLocalesProvider</parameter>
+        <parameter key="miky.form.type.resource_translations.class">Miky\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType</parameter>
     </parameters>
 
     <services>
-        <service id="adevis.translation.translatable_listener.doctrine.orm" class="%adevis.translation.translatable_listener.doctrine.orm.class%">
-            <argument type="service" id="adevis.resource_registry" />
-            <argument type="service" id="adevis.translation.locale_provider" />
+        <service id="miky.translation.translatable_listener.doctrine.orm" class="%miky.translation.translatable_listener.doctrine.orm.class%">
+            <argument type="service" id="miky.resource_registry" />
+            <argument type="service" id="miky.translation.locale_provider" />
             <tag name="doctrine.event_subscriber" connection="default" priority="99" />
         </service>
-        <service id="adevis.translation.translatable_listener.doctrine.mongodb_odm" class="%adevis.translation.translatable_listener.doctrine.mongodb_odm.class%">
-            <argument type="service" id="adevis.resource_registry" />
-            <argument type="service" id="adevis.translation.locale_provider" />
+        <service id="miky.translation.translatable_listener.doctrine.mongodb_odm" class="%miky.translation.translatable_listener.doctrine.mongodb_odm.class%">
+            <argument type="service" id="miky.resource_registry" />
+            <argument type="service" id="miky.translation.locale_provider" />
             <tag name="doctrine_mongodb.odm.event_subscriber" connection="default" priority="99" />
         </service>
 
-        <service id="adevis.translation.locale_provider.request" class="%adevis.translation.locale_provider.request.class%">
-            <argument>%adevis.translation.default_locale%</argument>
+        <service id="miky.translation.locale_provider.request" class="%miky.translation.locale_provider.request.class%">
+            <argument>%miky.translation.default_locale%</argument>
             <tag name="kernel.event_subscriber" priority="98" />
         </service>
 
-        <service id="adevis.translation.locales_provider.array" class="%adevis.translation.locales_provider.array.class%" >
-            <argument>%adevis.translation.available_locales%</argument>
+        <service id="miky.translation.locales_provider.array" class="%miky.translation.locales_provider.array.class%" >
+            <argument>%miky.translation.available_locales%</argument>
         </service>
-        <service id="adevis.form.type.resource_translations" class="%adevis.form.type.resource_translations.class%">
-            <argument type="service" id="adevis.translation.locale_provider"/>
-            <argument type="service" id="adevis.translation.available_locales_provider"/>
-            <tag name="form.type" alias="adevis_translations" />
+        <service id="miky.form.type.resource_translations" class="%miky.form.type.resource_translations.class%">
+            <argument type="service" id="miky.translation.locale_provider"/>
+            <argument type="service" id="miky.translation.available_locales_provider"/>
+            <tag name="form.type" alias="miky_translations" />
         </service>
 
     </services>

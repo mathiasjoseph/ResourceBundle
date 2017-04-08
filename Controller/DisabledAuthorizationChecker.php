@@ -14,7 +14,7 @@ namespace Miky\Bundle\ResourceBundle\Controller;
 /**
  * This authorization checker always returns true. Useful if you don't want to have authorization checks at all.
  *
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  */
 class DisabledAuthorizationChecker implements AuthorizationCheckerInterface
 {

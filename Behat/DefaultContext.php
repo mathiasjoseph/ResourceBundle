@@ -34,7 +34,7 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
     /**
      * @var string
      */
-    protected $applicationName = 'adevis';
+    protected $applicationName = 'miky';
 
     /**
      * @var Generator
@@ -552,7 +552,7 @@ abstract class DefaultContext extends RawMinkContext implements Context, KernelA
      */
     protected function getLocaleCodeByEnglishLocaleName($name)
     {
-        $localeNameConverter = $this->getService('adevis.converter.locale_name');
+        $localeNameConverter = $this->getService('miky.converter.locale_name');
 
         return $localeNameConverter->convertToCode($name);
     }

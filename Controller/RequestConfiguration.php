@@ -18,7 +18,7 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 /**
  * Resource controller configuration.
  *
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  * @author Saša Stamenković <umpirsky@gmail.com>
  * @author Gustavo Perdomo <gperdomor@gmail.com>
  */

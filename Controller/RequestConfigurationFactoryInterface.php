@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Request configuration factory.
  *
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  */
 interface RequestConfigurationFactoryInterface
 {

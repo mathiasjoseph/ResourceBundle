@@ -17,18 +17,18 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="adevis.twig.extension.resource.class">Miky\Bundle\ResourceBundle\Twig\ResourceExtension</parameter>
+        <parameter key="miky.twig.extension.resource.class">Miky\Bundle\ResourceBundle\Twig\ResourceExtension</parameter>
 
-        <parameter key="adevis.twig.extension.resource.pagination_template">MikyResourceBundle:Twig:paginate.html.twig</parameter>
-        <parameter key="adevis.twig.extension.resource.sorting_template">MikyResourceBundle:Twig:sorting.html.twig</parameter>
+        <parameter key="miky.twig.extension.resource.pagination_template">MikyResourceBundle:Twig:paginate.html.twig</parameter>
+        <parameter key="miky.twig.extension.resource.sorting_template">MikyResourceBundle:Twig:sorting.html.twig</parameter>
     </parameters>
 
     <services>
-        <service id="adevis.twig.extension.resource" class="%adevis.twig.extension.resource.class%">
+        <service id="miky.twig.extension.resource" class="%miky.twig.extension.resource.class%">
             <argument type="service" id="router" />
-            <argument type="service" id="adevis.controller.parameters" />
-            <argument>%adevis.twig.extension.resource.pagination_template%</argument>
-            <argument>%adevis.twig.extension.resource.sorting_template%</argument>
+            <argument type="service" id="miky.controller.parameters" />
+            <argument>%miky.twig.extension.resource.pagination_template%</argument>
+            <argument>%miky.twig.extension.resource.sorting_template%</argument>
             <tag name="twig.extension" />
             <tag name="kernel.event_listener" event="kernel.request" method="fetchRequest" />
         </service>

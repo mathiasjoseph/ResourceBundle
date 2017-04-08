@@ -46,8 +46,8 @@ class CollectionExtension extends AbstractTypeExtension
         ]);
 
         $resolver->setDefaults([
-            'button_add_label' => 'adevis.form.collection.add',
-            'button_delete_label' => 'adevis.form.collection.delete',
+            'button_add_label' => 'miky.form.collection.add',
+            'button_delete_label' => 'miky.form.collection.delete',
         ]);
     }
 

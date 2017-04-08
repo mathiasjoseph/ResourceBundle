@@ -84,7 +84,7 @@ class RequestConfigurationFactory implements RequestConfigurationFactoryInterfac
             }
         }
 
-        return array_merge($request->attributes->get('_adevis', []), $parameters);
+        return array_merge($request->attributes->get('_miky', []), $parameters);
     }
 
 }

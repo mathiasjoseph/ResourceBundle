@@ -1,7 +1,7 @@
 # This file is part of the Miky package.
 # (c) Paweł Jędrzejewski
 
-adevis:
+miky:
     resource:
         create: 'El %resource% se ha creado con éxito.'
         update: 'El %resource% se ha actualizado con éxito.'

@@ -1,4 +1,4 @@
-adevis:
+miky:
     resource:
         not_enabled: "Given resource is disabled"
         not_disabled: "Given resource is enabled"

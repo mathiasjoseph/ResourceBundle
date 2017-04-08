@@ -17,19 +17,19 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="adevis.storage.cookie.class">Miky\Component\Storage\CookieStorage</parameter>
-        <parameter key="adevis.storage.doctrine_cache.class">Miky\Component\Storage\DoctrineCacheStorage</parameter>
-        <parameter key="adevis.storage.session.class">Miky\Component\Storage\SessionStorage</parameter>
+        <parameter key="miky.storage.cookie.class">Miky\Component\Storage\CookieStorage</parameter>
+        <parameter key="miky.storage.doctrine_cache.class">Miky\Component\Storage\DoctrineCacheStorage</parameter>
+        <parameter key="miky.storage.session.class">Miky\Component\Storage\SessionStorage</parameter>
     </parameters>
 
     <services>
-        <service id="adevis.storage.cookie" class="%adevis.storage.cookie.class%" public="false">
+        <service id="miky.storage.cookie" class="%miky.storage.cookie.class%" public="false">
             <call method="setRequest">
                 <argument type="service" id="request" on-invalid="null" strict="false" />
             </call>
         </service>
 
-        <service id="adevis.storage.session" class="%adevis.storage.session.class%" public="false">
+        <service id="miky.storage.session" class="%miky.storage.session.class%" public="false">
             <argument type="service" id="session" />
         </service>
     </services>

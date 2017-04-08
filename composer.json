@@ -23,7 +23,10 @@
     "symfony/monolog-bundle": "^3.0.2",
     "symfony/swiftmailer-bundle": "~2.3,>=2.3.10",
     "symfony/symfony": "2.8.*",
-    "twig/twig": "^1.0||^2.0"
+    "twig/twig": "^1.0||^2.0",
+    "friendsofsymfony/rest-bundle": "^2.1",
+    "mikycorp/corebundle": "dev-master"
+
   },
   "autoload" : {
     "psr-0" : {

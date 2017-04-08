@@ -21,7 +21,7 @@ use Symfony\Component\DependencyInjection\Parameter;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  * @author Arnaud Langlade <aRn0D.dev@gmail.com>
  */
 abstract class AbstractDriver implements DriverInterface
@@ -102,20 +102,20 @@ abstract class AbstractDriver implements DriverInterface
         $definition
             ->setArguments([
                 $this->getMetadataDefinition($metadata),
-                new Reference('adevis.resource_controller.request_configuration_factory'),
-                new Reference('adevis.resource_controller.view_handler'),
+                new Reference('miky.resource_controller.request_configuration_factory'),
+                new Reference('miky.resource_controller.view_handler'),
                 new Reference($metadata->getServiceId('repository')),
                 new Reference($metadata->getServiceId('factory')),
-                new Reference('adevis.resource_controller.new_resource_factory'),
+                new Reference('miky.resource_controller.new_resource_factory'),
                 new Reference($metadata->getServiceId('manager')),
-                new Reference('adevis.resource_controller.single_resource_provider'),
-                new Reference('adevis.resource_controller.resources_collection_provider'),
-                new Reference('adevis.resource_controller.form_factory'),
-                new Reference('adevis.resource_controller.redirect_handler'),
-                new Reference('adevis.resource_controller.flash_helper'),
-                new Reference('adevis.resource_controller.authorization_checker'),
-                new Reference('adevis.resource_controller.event_dispatcher'),
-                new Reference('adevis.resource_controller.state_machine'),
+                new Reference('miky.resource_controller.single_resource_provider'),
+                new Reference('miky.resource_controller.resources_collection_provider'),
+                new Reference('miky.resource_controller.form_factory'),
+                new Reference('miky.resource_controller.redirect_handler'),
+                new Reference('miky.resource_controller.flash_helper'),
+                new Reference('miky.resource_controller.authorization_checker'),
+                new Reference('miky.resource_controller.event_dispatcher'),
+                new Reference('miky.resource_controller.state_machine'),
             ])
             ->addMethodCall('setContainer', [new Reference('service_container')])
         ;
@@ -129,20 +129,20 @@ abstract class AbstractDriver implements DriverInterface
         $definition
             ->setArguments([
                 $this->getMetadataDefinition($metadata),
-                new Reference('adevis.resource_controller.request_configuration_factory'),
-                new Reference('adevis.resource_controller.view_handler'),
+                new Reference('miky.resource_controller.request_configuration_factory'),
+                new Reference('miky.resource_controller.view_handler'),
                 new Reference($metadata->getServiceId('repository')),
                 new Reference($metadata->getServiceId('factory')),
-                new Reference('adevis.resource_controller.new_resource_factory'),
+                new Reference('miky.resource_controller.new_resource_factory'),
                 new Reference($metadata->getServiceId('manager')),
-                new Reference('adevis.resource_controller.single_resource_provider'),
-                new Reference('adevis.resource_controller.resources_collection_provider'),
-                new Reference('adevis.resource_controller.form_factory'),
-                new Reference('adevis.resource_controller.redirect_handler'),
-                new Reference('adevis.resource_controller.flash_helper'),
-                new Reference('adevis.resource_controller.authorization_checker'),
-                new Reference('adevis.resource_controller.event_dispatcher'),
-                new Reference('adevis.resource_controller.state_machine'),
+                new Reference('miky.resource_controller.single_resource_provider'),
+                new Reference('miky.resource_controller.resources_collection_provider'),
+                new Reference('miky.resource_controller.form_factory'),
+                new Reference('miky.resource_controller.redirect_handler'),
+                new Reference('miky.resource_controller.flash_helper'),
+                new Reference('miky.resource_controller.authorization_checker'),
+                new Reference('miky.resource_controller.event_dispatcher'),
+                new Reference('miky.resource_controller.state_machine'),
             ])
             ->addMethodCall('setContainer', [new Reference('service_container')])
         ;
@@ -164,7 +164,7 @@ abstract class AbstractDriver implements DriverInterface
             $decoratedDefinition = new Definition(Factory::class);
             $decoratedDefinition->setArguments([$modelClass]);
 
-            $definition->setArguments([$decoratedDefinition, new Reference('adevis.translation.locale_provider')]);
+            $definition->setArguments([$decoratedDefinition, new Reference('miky.translation.locale_provider')]);
 
             $container->setDefinition($metadata->getServiceId('factory'), $definition);
 
@@ -240,7 +240,7 @@ abstract class AbstractDriver implements DriverInterface
     {
         $definition = new Definition(Metadata::class);
         $definition
-            ->setFactory([new Reference('adevis.resource_registry'), 'get'])
+            ->setFactory([new Reference('miky.resource_registry'), 'get'])
             ->setArguments([$metadata->getAlias()])
         ;
 

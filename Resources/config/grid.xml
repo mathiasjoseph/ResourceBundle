@@ -17,19 +17,19 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="adevis.grid.resource_view_factory.class">Miky\Bundle\ResourceBundle\Grid\View\ResourceGridViewFactory</parameter>
-        <parameter key="adevis.resource_controller.resources_resolver.grid_aware.class">Miky\Bundle\ResourceBundle\Grid\Controller\ResourcesResolver</parameter>
+        <parameter key="miky.grid.resource_view_factory.class">Miky\Bundle\ResourceBundle\Grid\View\ResourceGridViewFactory</parameter>
+        <parameter key="miky.resource_controller.resources_resolver.grid_aware.class">Miky\Bundle\ResourceBundle\Grid\Controller\ResourcesResolver</parameter>
     </parameters>
 
     <services>
-        <service id="adevis.grid.resource_view_factory" class="%adevis.grid.resource_view_factory.class%">
-            <argument type="service" id="adevis.grid.data_provider" />
-            <argument type="service" id="adevis.resource_controller.parameters_parser" />
+        <service id="miky.grid.resource_view_factory" class="%miky.grid.resource_view_factory.class%">
+            <argument type="service" id="miky.grid.data_provider" />
+            <argument type="service" id="miky.resource_controller.parameters_parser" />
         </service>
-        <service id="adevis.resource_controller.resources_resolver.grid_aware" class="%adevis.resource_controller.resources_resolver.grid_aware.class%" decorates="adevis.resource_controller.resources_resolver">
-            <argument type="service" id="adevis.resource_controller.resources_resolver.grid_aware.inner" />
-            <argument type="service" id="adevis.grid.provider" />
-            <argument type="service" id="adevis.grid.resource_view_factory" />
+        <service id="miky.resource_controller.resources_resolver.grid_aware" class="%miky.resource_controller.resources_resolver.grid_aware.class%" decorates="miky.resource_controller.resources_resolver">
+            <argument type="service" id="miky.resource_controller.resources_resolver.grid_aware.inner" />
+            <argument type="service" id="miky.grid.provider" />
+            <argument type="service" id="miky.grid.resource_view_factory" />
         </service>
     </services>
 </container>

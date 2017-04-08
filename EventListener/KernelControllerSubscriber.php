@@ -21,7 +21,7 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 /**
  * Kernel listener used to set the request on the configurable controllers.
  *
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  * @author Arnaud Langade <arn0d.dev@gmail.com>
  * @author Joseph Bielawski <stloyd@gmail.com>
  */
@@ -100,8 +100,8 @@ class KernelControllerSubscriber implements EventSubscriberInterface
         $controller->getConfiguration()->setParameters($this->parameters);
 
         $routeParams = $request->attributes->get('_route_params', []);
-        if (isset($routeParams['_adevis'])) {
-            unset($routeParams['_adevis']);
+        if (isset($routeParams['_miky'])) {
+            unset($routeParams['_miky']);
 
             $request->attributes->set('_route_params', $routeParams);
         }
@@ -131,6 +131,6 @@ class KernelControllerSubscriber implements EventSubscriberInterface
             }
         }
 
-        return array_merge($request->attributes->get('_adevis', []), $data);
+        return array_merge($request->attributes->get('_miky', []), $data);
     }
 }

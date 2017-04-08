@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 /**
  * Adds all resources to the registry.
  *
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  */
 class RegisterResourcesPass implements CompilerPassInterface
 {
@@ -28,8 +28,8 @@ class RegisterResourcesPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         try {
-            $resources = $container->getParameter('adevis.resources');
-            $registry = $container->findDefinition('adevis.resource_registry');
+            $resources = $container->getParameter('miky.resources');
+            $registry = $container->findDefinition('miky.resource_registry');
         } catch (InvalidArgumentException $exception) {
             return;
         }

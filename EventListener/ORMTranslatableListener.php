@@ -23,7 +23,7 @@ use Doctrine\ORM\Mapping\ClassMetadataInfo;
 /**
  * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk>
  * @author Prezent Internet B.V. <info@prezent.nl>
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  */
 class ORMTranslatableListener extends AbstractTranslatableListener implements EventSubscriber
 {

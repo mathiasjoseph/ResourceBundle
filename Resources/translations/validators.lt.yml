@@ -1,7 +1,7 @@
 # This file is part of the Miky package.
 # (c) Paweł Jędrzejewski
 
-adevis:
+miky:
     resource:
         not_enabled: Resursas yra išjungtas
         not_disabled: Resursas yra įjungtas

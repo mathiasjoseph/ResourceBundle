@@ -17,15 +17,15 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="adevis.routing.route_factory.class">Miky\Bundle\ResourceBundle\Routing\RouteFactory</parameter>
-        <parameter key="adevis.routing.loader.resource.class">Miky\Bundle\ResourceBundle\Routing\ResourceLoader</parameter>
+        <parameter key="miky.routing.route_factory.class">Miky\Bundle\ResourceBundle\Routing\RouteFactory</parameter>
+        <parameter key="miky.routing.loader.resource.class">Miky\Bundle\ResourceBundle\Routing\ResourceLoader</parameter>
     </parameters>
 
     <services>
-        <service id="adevis.routing.route_factory" class="%adevis.routing.route_factory.class%" />
-        <service id="adevis.routing.loader.resource" class="%adevis.routing.loader.resource.class%">
-            <argument type="service" id="adevis.resource_registry" />
-            <argument type="service" id="adevis.routing.route_factory" />
+        <service id="miky.routing.route_factory" class="%miky.routing.route_factory.class%" />
+        <service id="miky.routing.loader.resource" class="%miky.routing.loader.resource.class%">
+            <argument type="service" id="miky.resource_registry" />
+            <argument type="service" id="miky.routing.route_factory" />
             <tag name="routing.loader" />
         </service>
     </services>

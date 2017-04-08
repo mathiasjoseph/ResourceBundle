@@ -28,7 +28,7 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  * @author Saša Stamenković <umpirsky@gmail.com>
  */
 class ResourceController extends Controller

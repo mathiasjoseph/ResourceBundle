@@ -74,6 +74,6 @@ class ResourceTranslationsType extends AbstractType
      */
     public function getName()
     {
-        return 'adevis_translations';
+        return 'miky_translations';
     }
 }

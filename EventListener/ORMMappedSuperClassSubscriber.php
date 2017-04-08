@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
 /**
  * @author Ivan Molchanov <ivan.molchanov@opensoftdev.ru>
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  */
 class ORMMappedSuperClassSubscriber extends AbstractDoctrineSubscriber
 {

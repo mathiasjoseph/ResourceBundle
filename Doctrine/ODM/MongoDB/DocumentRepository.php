@@ -21,7 +21,7 @@ use Pagerfanta\Pagerfanta;
 /**
  * Doctrine ODM driver resource manager.
  *
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  */
 class DocumentRepository extends BaseDocumentRepository implements RepositoryInterface
 {

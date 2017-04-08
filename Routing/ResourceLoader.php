@@ -67,7 +67,7 @@ class ResourceLoader implements LoaderInterface
             $routesToGenerate = array_diff($routesToGenerate, $configuration['except']);
         }
 
-        $isApi = $type === 'adevis.resource_api';
+        $isApi = $type === 'miky.resource_api';
 
         $metadata = $this->resourceRegistry->get($configuration['alias']);
         $routes = $this->routeFactory->createRouteCollection();
@@ -107,7 +107,7 @@ class ResourceLoader implements LoaderInterface
      */
     public function supports($resource, $type = null)
     {
-        return 'adevis.resource' === $type || 'adevis.resource_api' === $type;
+        return 'miky.resource' === $type || 'miky.resource_api' === $type;
     }
 
     /**
@@ -150,35 +150,35 @@ class ResourceLoader implements LoaderInterface
         }
 
         if ($isApi && 'index' === $actionName) {
-            $defaults['_adevis']['serialization_groups'] = ['Default'];
+            $defaults['_miky']['serialization_groups'] = ['Default'];
         }
         if ($isApi && in_array($actionName, ['show', 'create', 'update'])) {
-            $defaults['_adevis']['serialization_groups'] = ['Default', 'Detailed'];
+            $defaults['_miky']['serialization_groups'] = ['Default', 'Detailed'];
         }
         if (isset($configuration['grid']) && 'index' === $actionName) {
-            $defaults['_adevis']['grid'] = $configuration['grid'];
+            $defaults['_miky']['grid'] = $configuration['grid'];
         }
         if (isset($configuration['form']) && in_array($actionName, ['create', 'update'])) {
-            $defaults['_adevis']['form'] = $configuration['form'];
+            $defaults['_miky']['form'] = $configuration['form'];
         }
         if (isset($configuration['section'])) {
-            $defaults['_adevis']['section'] = $configuration['section'];
+            $defaults['_miky']['section'] = $configuration['section'];
         }
         if (isset($configuration['context'])) {
-            $defaults['_adevis']['context'] = $configuration['context'];
+            $defaults['_miky']['context'] = $configuration['context'];
         }
         if (isset($configuration['templates']) && in_array($actionName, ['show', 'index', 'create', 'update'])) {
-            $defaults['_adevis']['template'] = sprintf('%s:%s.html.twig', $configuration['templates'], $actionName);
+            $defaults['_miky']['template'] = sprintf('%s:%s.html.twig', $configuration['templates'], $actionName);
         }
         if (isset($configuration['redirect']) && in_array($actionName, ['create', 'update'])) {
-            $defaults['_adevis']['redirect'] = $this->getRouteName($metadata, $configuration, $configuration['redirect']);
+            $defaults['_miky']['redirect'] = $this->getRouteName($metadata, $configuration, $configuration['redirect']);
         }
         if (isset($configuration['vars']['all'])) {
-            $defaults['_adevis']['vars'] = $configuration['vars']['all'];
+            $defaults['_miky']['vars'] = $configuration['vars']['all'];
         }
         if (isset($configuration['vars'][$actionName])) {
             $vars = isset($configuration['vars']['all']) ? $configuration['vars']['all'] : [];
-            $defaults['_adevis']['vars'] = array_merge($vars, $configuration['vars'][$actionName]);
+            $defaults['_miky']['vars'] = array_merge($vars, $configuration['vars'][$actionName]);
         }
 
         return $this->routeFactory->createRoute($path, $defaults, [], [], '', [], $methods);

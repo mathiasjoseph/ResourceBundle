@@ -96,7 +96,7 @@ class ResourceDeleteSubscriber implements EventSubscriberInterface
                 $this->viewHandler->handle(View::create([
                     'error' => [
                         'code' => $exception->getSQLState(),
-                        'message' => $this->translator->trans('adevis.resource.delete_error', ['%resource%' => $resourceName], 'flashes'),
+                        'message' => $this->translator->trans('miky.resource.delete_error', ['%resource%' => $resourceName], 'flashes'),
                     ]
                 ], 409))
             );
@@ -110,7 +110,7 @@ class ResourceDeleteSubscriber implements EventSubscriberInterface
 
         $this->session->getBag('flashes')->add(
             'error',
-            $this->translator->trans('adevis.resource.delete_error', ['%resource%' => $resourceName], 'flashes')
+            $this->translator->trans('miky.resource.delete_error', ['%resource%' => $resourceName], 'flashes')
         );
 
         $referrer = $event->getRequest()->headers->get('referer');

@@ -21,7 +21,7 @@ use Pagerfanta\Pagerfanta;
 /**
  * Doctrine PHPCR-ODM driver document repository.
  *
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  * @author David Buchmann <mail@davidbu.ch>
  */
 class DocumentRepository extends BaseDocumentRepository implements RepositoryInterface

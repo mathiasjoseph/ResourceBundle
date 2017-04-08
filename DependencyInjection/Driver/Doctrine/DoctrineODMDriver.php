@@ -21,7 +21,7 @@ use Symfony\Component\DependencyInjection\Parameter;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  * @author Arnaud Langlade <aRn0D.dev@gmail.com>
  */
 class DoctrineODMDriver extends AbstractDoctrineDriver
@@ -43,7 +43,7 @@ class DoctrineODMDriver extends AbstractDoctrineDriver
 
         $repositoryClass = in_array(TranslatableInterface::class, class_implements($modelClass))
             ? TranslatableRepository::class
-            : new Parameter('adevis.mongodb.odm.repository.class')
+            : new Parameter('miky.mongodb.odm.repository.class')
         ;
 
         if ($metadata->hasClass('repository')) {

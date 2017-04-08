@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
  * Resolves given target entities with container parameters.
  * Usable only with *doctrine/orm* driver.
  *
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  */
 final class DoctrineTargetEntitiesResolverPass implements CompilerPassInterface
 {
@@ -29,7 +29,7 @@ final class DoctrineTargetEntitiesResolverPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         try {
-            $resources = $container->getParameter('adevis.resources');
+            $resources = $container->getParameter('miky.resources');
             $resolveTargetEntityListener = $container->findDefinition('doctrine.orm.listeners.resolve_target_entity');
         } catch (InvalidArgumentException $exception) {
             return;

@@ -26,7 +26,7 @@ use Symfony\Component\DependencyInjection\Parameter;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  * @author Arnaud Langlade <aRn0D.dev@gmail.com>
  */
 class DoctrinePHPCRDriver extends AbstractDoctrineDriver
@@ -165,7 +165,7 @@ class DoctrinePHPCRDriver extends AbstractDoctrineDriver
      */
     protected function addRepository(ContainerBuilder $container, MetadataInterface $metadata)
     {
-        $repositoryClass = new Parameter('adevis.phpcr_odm.repository.class');
+        $repositoryClass = new Parameter('miky.phpcr_odm.repository.class');
 
         if ($metadata->hasClass('repository')) {
             $repositoryClass = $metadata->getClass('repository');

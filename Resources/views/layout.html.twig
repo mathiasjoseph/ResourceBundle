@@ -3,14 +3,14 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block adevis_title %}Miky bundles example layout{% endblock %}</title>
+        <title>{% block miky_title %}Miky bundles example layout{% endblock %}</title>
 
         <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
         <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 
-        {% block adevis_stylesheets %}
+        {% block miky_stylesheets %}
             <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css" />
             <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" />
             <style type="text/css">
@@ -24,11 +24,11 @@
         <div class="navbar navbar-fixed-top navbar-inverse">
             <div class="navbar-inner">
                 <div class="container-fluid">
-                    <a class="brand" href="http://adevis.org">Miky</a>
+                    <a class="brand" href="http://miky.org">Miky</a>
                     <ul class="nav">
-                        <li><a href="http://adevis.readthedocs.org">Documentation</a></li>
+                        <li><a href="http://miky.readthedocs.org">Documentation</a></li>
                         <li><a href="http://github.com/Miky">GitHub repositories</a></li>
-                        <li><a href="http://packagist.org/packages/adevis">Packagist (Composer)</a></li>
+                        <li><a href="http://packagist.org/packages/miky">Packagist (Composer)</a></li>
                     </ul>
                 </div>
             </div>
@@ -43,14 +43,14 @@
                 {% endfor %}
             {% endfor %}
 
-            {% block adevis_content %}
+            {% block miky_content %}
             {% endblock %}
             <hr>
             <footer>
                 <p>&copy; <a href="http://Miky.org">Miky.org</a>, 2011 - {{ 'now'|format_date('Y') }}.</p>
             </footer>
         </div>
-        {% block adevis_javascripts %}
+        {% block miky_javascripts %}
             <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
             <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
         {% endblock %}

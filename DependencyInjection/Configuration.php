@@ -24,7 +24,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * This information is solely responsible for how the different configuration
  * sections are normalized, and merged.
  *
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  */
 class Configuration implements ConfigurationInterface
 {
@@ -34,7 +34,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('adevis_resource');
+        $rootNode = $treeBuilder->root('miky_resource');
 
         $this->addResourcesSection($rootNode);
         $this->addSettingsSection($rootNode);
@@ -44,7 +44,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('authorization_checker')
-                    ->defaultValue('adevis.resource_controller.authorization_checker.disabled')
+                    ->defaultValue('miky.resource_controller.authorization_checker.disabled')
                     ->cannotBeEmpty()
                 ->end()
             ->end()
@@ -175,8 +175,8 @@ class Configuration implements ConfigurationInterface
                     ->canBeEnabled()
                     ->children()
                         ->scalarNode('default_locale')->cannotBeEmpty()->end()
-                        ->scalarNode('locale_provider')->defaultValue('adevis.translation.locale_provider.request')->cannotBeEmpty()->end()
-                        ->scalarNode('available_locales_provider')->defaultValue('adevis.translation.locales_provider.array')->cannotBeEmpty()->end()
+                        ->scalarNode('locale_provider')->defaultValue('miky.translation.locale_provider.request')->cannotBeEmpty()->end()
+                        ->scalarNode('available_locales_provider')->defaultValue('miky.translation.locales_provider.array')->cannotBeEmpty()->end()
                         ->arrayNode('available_locales') ->prototype('scalar')->end()
                     ->end()
                 ->end()

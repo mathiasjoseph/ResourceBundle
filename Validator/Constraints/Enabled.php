@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class Enabled extends Constraint
 {
-    public $message = 'adevis.resource.not_enabled';
+    public $message = 'miky.resource.not_enabled';
 
     /**
      * {@inheritdoc}
@@ -33,6 +33,6 @@ class Enabled extends Constraint
      */
     public function validatedBy()
     {
-        return 'adevis_resource_enabled_validator';
+        return 'miky_resource_enabled_validator';
     }
 }

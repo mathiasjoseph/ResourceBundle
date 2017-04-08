@@ -21,7 +21,7 @@ use Symfony\Component\Routing\RouterInterface;
 /**
  * Miky resource twig helper.
  *
- * @author Paweł Jędrzejewski <pawel@adevis.org>
+ * @author Paweł Jędrzejewski <pawel@miky.org>
  * @author Saša Stamenković <umpirsky@gmail.com>
  * @author Arnaud Langlade <arn0d.dev@gmail.com>
  */
@@ -75,12 +75,12 @@ class ResourceExtension extends \Twig_Extension
     {
         return [
              new \Twig_SimpleFunction(
-                 'adevis_resource_sort',
+                 'miky_resource_sort',
                  [$this, 'renderSortingLink'],
                  ['needs_environment' => true, 'is_safe' => ['html']]
              ),
              new \Twig_SimpleFunction(
-                 'adevis_resource_paginate',
+                 'miky_resource_paginate',
                  [$this, 'renderPaginateSelect'],
                  ['needs_environment' => true, 'is_safe' => ['html']]
              ),
@@ -195,7 +195,7 @@ class ResourceExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'adevis_resource';
+        return 'miky_resource';
     }
 
     /**

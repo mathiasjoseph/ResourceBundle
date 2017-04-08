@@ -34,9 +34,9 @@ abstract class AbstractResourceExtension extends Extension
             $alias = $applicationName.'.'.$resourceName;
             $resourceConfig = array_merge(['driver' => $driver], $resourceConfig);
 
-            $resources = $container->hasParameter('adevis.resources') ? $container->getParameter('adevis.resources') : [];
+            $resources = $container->hasParameter('miky.resources') ? $container->getParameter('miky.resources') : [];
             $resources = array_merge($resources, [$alias => $resourceConfig]);
-            $container->setParameter('adevis.resources', $resources);
+            $container->setParameter('miky.resources', $resources);
 
             $metadata = Metadata::fromAliasAndConfiguration($alias, $resourceConfig);
 
@@ -46,9 +46,9 @@ abstract class AbstractResourceExtension extends Extension
                 $alias = $alias.'_translation';
                 $resourceConfig = array_merge(['driver' => $driver], $resourceConfig['translation']);
 
-                $resources = $container->hasParameter('adevis.resources') ? $container->getParameter('adevis.resources') : [];
+                $resources = $container->hasParameter('miky.resources') ? $container->getParameter('miky.resources') : [];
                 $resources = array_merge($resources, [$alias => $resourceConfig]);
-                $container->setParameter('adevis.resources', $resources);
+                $container->setParameter('miky.resources', $resources);
 
                 $metadata = Metadata::fromAliasAndConfiguration($alias, $resourceConfig);
 
@@ -65,7 +65,7 @@ abstract class AbstractResourceExtension extends Extension
     {
         if (isset($config['validation_groups'])) {
             foreach ($config['validation_groups'] as $name => $groups) {
-                $container->setParameter(sprintf('adevis.validation_groups.%s', $name), $groups);
+                $container->setParameter(sprintf('miky.validation_groups.%s', $name), $groups);
             }
         }
     }

@@ -36,7 +36,7 @@ class AddCodeFormSubscriber implements EventSubscriberInterface
      * @param string $type
      * @param string $label
      */
-    public function __construct($type = 'text', $label = 'adevis.ui.code')
+    public function __construct($type = 'text', $label = 'miky.ui.code')
     {
         $this->type = $type;
         $this->label = $label;

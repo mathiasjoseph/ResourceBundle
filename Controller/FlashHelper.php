@@ -55,7 +55,7 @@ class FlashHelper implements FlashHelperInterface
         $translatedMessage = $this->translateMessage($flashMessage, $metadata);
 
         if ($flashMessage === $translatedMessage) {
-            $translatedMessage = $this->translateMessage(sprintf('adevis.resource.%s', $actionName), $metadata);
+            $translatedMessage = $this->translateMessage(sprintf('miky.resource.%s', $actionName), $metadata);
         }
 
         $this->session->getBag('flashes')->add('success', $translatedMessage);

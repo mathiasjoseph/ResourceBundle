@@ -14,6 +14,7 @@ namespace Miky\Bundle\ResourceBundle\Routing;
 use Miky\Component\Resource\Metadata\MetadataInterface;
 use Miky\Component\Resource\Metadata\RegistryInterface;
 use Gedmo\Sluggable\Util\Urlizer;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
@@ -50,7 +51,6 @@ class ResourceLoader implements LoaderInterface
     {
         $processor = new Processor();
         $configurationDefinition = new Configuration();
-
         $configuration = Yaml::parse($resource);
         $configuration = $processor->processConfiguration($configurationDefinition, ['routing' => $configuration]);
 
@@ -194,7 +194,7 @@ class ResourceLoader implements LoaderInterface
     private function getRouteName(MetadataInterface $metadata, array $configuration, $actionName)
     {
         $sectionPrefix = isset($configuration['section']) ? $configuration['section'].'_' : '';
-
+        throw new \Exception($metadata->getApplicationName());
         return sprintf('%s_%s%s_%s', $metadata->getApplicationName(), $sectionPrefix, $metadata->getName(), $actionName);
     }
 }

@@ -18,6 +18,8 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Yaml\Yaml;
 
@@ -35,13 +37,19 @@ class ResourceLoader implements LoaderInterface
     private $routeFactory;
 
     /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
      * @param RegistryInterface $resourceRegistry
      * @param RouteFactoryInterface $routeFactory
      */
-    public function __construct(RegistryInterface $resourceRegistry, RouteFactoryInterface $routeFactory)
+    public function __construct(RegistryInterface $resourceRegistry, RouteFactoryInterface $routeFactory, Container $container)
     {
         $this->resourceRegistry = $resourceRegistry;
         $this->routeFactory = $routeFactory;
+        $this->container = $container;
     }
 
     /**
@@ -67,12 +75,18 @@ class ResourceLoader implements LoaderInterface
             $routesToGenerate = array_diff($routesToGenerate, $configuration['except']);
         }
 
+
+
         $isApi = $type === 'miky.resource_api';
 
         $metadata = $this->resourceRegistry->get($configuration['alias']);
         $routes = $this->routeFactory->createRouteCollection();
 
         $rootPath = sprintf('/%s/', isset($configuration['path']) ? $configuration['path'] : Urlizer::urlize($metadata->getPluralName()));
+
+        if ($this->container->hasParameter("miky_admin.admin_key_path") && $type === 'miky.resource_admin'){
+            $rootPath = $this->container->getParameter("miky_admin.admin_key_path") . $rootPath;
+        }
 
         if (in_array('index', $routesToGenerate)) {
             $indexRoute = $this->createRoute($metadata, $configuration, $rootPath, 'index', ['GET'], $isApi);
@@ -107,7 +121,7 @@ class ResourceLoader implements LoaderInterface
      */
     public function supports($resource, $type = null)
     {
-        return 'miky.resource' === $type || 'miky.resource_api' === $type;
+        return 'miky.resource' === $type || 'miky.resource_api' === $type || 'miky.resource_admin' === $type;
     }
 
     /**
@@ -137,6 +151,7 @@ class ResourceLoader implements LoaderInterface
      */
     private function createRoute(MetadataInterface $metadata, array $configuration, $path, $actionName, array $methods, $isApi = false)
     {
+
         if (isset($configuration['context'])){
             if ($metadata->hasContexts() && $metadata->hasContext($configuration['context'])) {
                 $defaults = [
@@ -194,7 +209,7 @@ class ResourceLoader implements LoaderInterface
     private function getRouteName(MetadataInterface $metadata, array $configuration, $actionName)
     {
         $sectionPrefix = isset($configuration['section']) ? $configuration['section'].'_' : '';
-        throw new \Exception($metadata->getApplicationName());
+
         return sprintf('%s_%s%s_%s', $metadata->getApplicationName(), $sectionPrefix, $metadata->getName(), $actionName);
     }
 }

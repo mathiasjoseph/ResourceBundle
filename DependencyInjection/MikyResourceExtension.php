@@ -36,10 +36,11 @@ class MikyResourceExtension extends Extension
         
         $configFiles = [
             'services.xml',
-            'controller.xml',
-            'storage.xml',
-            'routing.xml',
-            'twig.xml',
+            'services/controller.xml',
+            'services/storage.xml',
+            'services/routing.xml',
+            'services/twig.xml',
+            'services/orm.xml',
         ];
 
         foreach ($configFiles as $configFile) {
@@ -48,11 +49,11 @@ class MikyResourceExtension extends Extension
 
         $bundles = $container->getParameter('kernel.bundles');
         if (array_key_exists('MikyGridBundle', $bundles)) {
-            $loader->load('grid.xml');
+            $loader->load('services/grid.xml');
         }
 
         if ($config['translation']['enabled']) {
-            $loader->load('translation.xml');
+            $loader->load('services/translation.xml');
 
             $container->setParameter('miky.translation.default_locale', $config['translation']['default_locale']);
             $container->setAlias('miky.translation.locale_provider', $config['translation']['locale_provider']);
@@ -63,25 +64,11 @@ class MikyResourceExtension extends Extension
         $container->setParameter('miky.resource.settings', $config['settings']);
         $container->setAlias('miky.resource_controller.authorization_checker', $config['authorization_checker']);
 
-        $this->loadPersistence($config['drivers'], $config['resources'], $loader);
+
         $this->loadResources($config['resources'], $container);
     }
 
-    private function loadPersistence(array $enabledDrivers, array $resources, LoaderInterface $loader)
-    {
-        foreach ($resources as $alias => $resource) {
-            if (!in_array($resource['driver'], $enabledDrivers)) {
-                throw new InvalidArgumentException(sprintf(
-                    'Resource "%s" uses driver "%s", but this driver has not been enabled.',
-                    $alias, $resource['driver']
-                ));
-            }
-        }
 
-        foreach ($enabledDrivers as $enabledDriver) {
-            $loader->load(sprintf('driver/%s.xml', $enabledDriver));
-        }
-    }
 
     private function loadResources(array $resources, ContainerBuilder $container)
     {

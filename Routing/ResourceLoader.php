@@ -84,8 +84,8 @@ class ResourceLoader implements LoaderInterface
 
         $rootPath = sprintf('/%s/', isset($configuration['path']) ? $configuration['path'] : Urlizer::urlize($metadata->getPluralName()));
 
-        if ($this->container->hasParameter("miky_admin.admin_key_path") && $type === 'miky.resource_admin'){
-            $rootPath = $this->container->getParameter("miky_admin.admin_key_path") . $rootPath;
+        if ($this->container->hasParameter("miky_admin.admin_path") && $type === 'miky.resource_admin'){
+            $rootPath = $this->container->getParameter("miky_admin.admin_path") . $rootPath;
         }
 
         if (in_array('index', $routesToGenerate)) {

@@ -28,7 +28,8 @@
     "white-october/pagerfanta-bundle": "^1.0",
     "willdurand/hateoas-bundle": "^1.2",
     "winzou/state-machine-bundle": "^0.3",
-    "mikycorp/corebundle": "dev-master",
+    "mikycorp/corebundle": "~1.0",
+    "mikycorp/resourcebundle": "~1.0",
     "stof/doctrine-extensions-bundle": "^1.2"
 
   },

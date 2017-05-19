@@ -26,7 +26,7 @@
     "twig/twig": "^2.0",
     "friendsofsymfony/rest-bundle": "^2.1",
     "white-october/pagerfanta-bundle": "^1.0",
-    "willdurand/hateoas-bundle": "^1.2",
+    "willdurand/hateoas-bundle": "~1.2",
     "winzou/state-machine-bundle": "^0.3",
     "mikycorp/corebundle": "~1.0",
     "mikycorp/resource": "~1.0",

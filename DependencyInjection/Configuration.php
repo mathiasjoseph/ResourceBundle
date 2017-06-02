@@ -80,14 +80,14 @@ class Configuration implements ConfigurationInterface
                                     ->end()
                                 ->end()
                             ->end()
-            ->arrayNode('contexts')
-            ->useAttributeAsKey('name')
-            ->prototype('array')
-            ->children()
-            ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
-            ->end()
-            ->end()
-            ->end()
+                            ->arrayNode('contexts')
+                                ->useAttributeAsKey('name')
+                                ->prototype('array')
+                                    ->children()
+                                    ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
+                                    ->end()
+                                        ->end()
+                             ->end()
                             ->arrayNode('validation_groups')
                                 ->addDefaultsIfNotSet()
                                 ->children()
@@ -135,6 +135,12 @@ class Configuration implements ConfigurationInterface
             ->end()
         ;
     }
+
+
+    public static function addResourcePrototype(ArrayNodeDefinition $node){
+
+    }
+
 
 
     /**

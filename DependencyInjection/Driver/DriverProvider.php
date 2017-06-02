@@ -11,10 +11,7 @@
 
 namespace Miky\Bundle\ResourceBundle\DependencyInjection\Driver;
 
-use Miky\Bundle\ResourceBundle\MikyResourceBundle;
-use Miky\Bundle\ResourceBundle\DependencyInjection\Driver\Doctrine\DoctrineODMDriver;
 use Miky\Bundle\ResourceBundle\DependencyInjection\Driver\Doctrine\DoctrineORMDriver;
-use Miky\Bundle\ResourceBundle\DependencyInjection\Driver\Doctrine\DoctrinePHPCRDriver;
 use Miky\Bundle\ResourceBundle\DependencyInjection\Driver\Exception\UnknownDriverException;
 use Miky\Component\Resource\Metadata\MetadataInterface;
 
@@ -24,11 +21,6 @@ use Miky\Component\Resource\Metadata\MetadataInterface;
 class DriverProvider
 {
     /**
-     * @var DriverInterface[]
-     */
-    private static $drivers = [];
-
-    /**
      * @param MetadataInterface $metadata
      *
      * @return DriverInterface
@@ -37,21 +29,6 @@ class DriverProvider
      */
     public static function get(MetadataInterface $metadata)
     {
-        $type = $metadata->getDriver();
-
-        if (isset(self::$drivers[$type])) {
-            return self::$drivers[$type];
-        }
-
-        switch ($type) {
-            case MikyResourceBundle::DRIVER_DOCTRINE_ORM:
-                return self::$drivers[$type] = new DoctrineORMDriver();
-            case MikyResourceBundle::DRIVER_DOCTRINE_MONGODB_ODM:
-                return self::$drivers[$type] = new DoctrineODMDriver();
-            case MikyResourceBundle::DRIVER_DOCTRINE_PHPCR_ODM:
-                return self::$drivers[$type] = new DoctrinePHPCRDriver();
-        }
-
-        throw new UnknownDriverException($type);
+        return new DoctrineORMDriver();
     }
 }

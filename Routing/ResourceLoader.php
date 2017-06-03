@@ -66,7 +66,7 @@ class ResourceLoader implements LoaderInterface
             throw new \InvalidArgumentException('You can configure only one of "except" & "only" options.');
         }
 
-        $routesToGenerate = ['show', 'index', 'create', 'update', 'delete'];
+        $routesToGenerate = ['show', 'index', 'create', 'update', 'delete', 'batch'];
 
         if (!empty($configuration['only'])) {
             $routesToGenerate = $configuration['only'];
@@ -91,6 +91,11 @@ class ResourceLoader implements LoaderInterface
         if (in_array('index', $routesToGenerate)) {
             $indexRoute = $this->createRoute($metadata, $configuration, $rootPath, 'index', ['GET'], $isApi);
             $routes->add($this->getRouteName($metadata, $configuration, 'index'), $indexRoute);
+        }
+
+        if (in_array('batch', $routesToGenerate)) {
+            $batchRoute = $this->createRoute($metadata, $configuration, $isApi ? $rootPath : $rootPath . 'batch', 'batch', ['POST'], $isApi);
+            $routes->add($this->getRouteName($metadata, $configuration, 'batch'), $batchRoute);
         }
 
         if (in_array('create', $routesToGenerate)) {

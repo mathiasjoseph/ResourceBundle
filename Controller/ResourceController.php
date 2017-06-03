@@ -379,6 +379,16 @@ class ResourceController extends Controller
     /**
      * @param Request $request
      *
+     * @return Response
+     */
+    public function batchAction(Request $request)
+    {
+       // @TODO
+    }
+
+    /**
+     * @param Request $request
+     *
      * @return RedirectResponse
      */
     public function applyStateMachineTransitionAction(Request $request)

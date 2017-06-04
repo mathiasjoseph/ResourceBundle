@@ -61,4 +61,12 @@ class ResourcesCollectionProvider implements ResourcesCollectionProviderInterfac
 
         return $resources;
     }
+
+    public function getByIds(RequestConfiguration $requestConfiguration, RepositoryInterface $repository, array $ids)
+    {
+
+        $resources = $this->resourcesResolver->getResourcesByIds($requestConfiguration, $repository, $ids);
+
+        return $resources;
+    }
 }

@@ -23,4 +23,12 @@ interface ResourcesCollectionProviderInterface
      * @return mixed
      */
     public function get(RequestConfiguration $requestConfiguration, RepositoryInterface $repository);
+
+    /**
+     * @param RequestConfiguration $requestConfiguration
+     * @param RepositoryInterface $repository
+     *
+     * @return mixed
+     */
+    public function getByIds(RequestConfiguration $requestConfiguration, RepositoryInterface $repository, array $ids);
 }

@@ -11,8 +11,10 @@
 
 namespace Miky\Bundle\ResourceBundle\Controller;
 
+use Doctrine\Common\Inflector\Inflector;
 use Miky\Component\Resource\Factory\FactoryInterface;
 use Miky\Component\Resource\Metadata\MetadataInterface;
+use Miky\Component\Resource\Model\ResourceInterface;
 use Miky\Component\Resource\Repository\RepositoryInterface;
 use Miky\Component\Resource\ResourceActions;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -141,7 +143,8 @@ class ResourceController extends Controller
         AuthorizationCheckerInterface $authorizationChecker,
         EventDispatcherInterface $eventDispatcher,
         StateMachineInterface $stateMachine
-    ) {
+    )
+    {
         $this->metadata = $metadata;
         $this->requestConfigurationFactory = $requestConfigurationFactory;
         $this->viewHandler = $viewHandler;
@@ -184,8 +187,7 @@ class ResourceController extends Controller
                     'metadata' => $this->metadata,
                     'resource' => $resource,
                     $this->metadata->getName() => $resource,
-                ])
-            ;
+                ]);
         }
 
         return $this->viewHandler->handle($configuration, $view);
@@ -214,11 +216,59 @@ class ResourceController extends Controller
                     'metadata' => $this->metadata,
                     'resources' => $resources,
                     $this->metadata->getPluralName() => $resources,
-                ])
-            ;
+                ]);
         }
 
         return $this->viewHandler->handle($configuration, $view);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function batchAction(Request $request)
+    {
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
+        $grid = $this->get('miky.grid.provider')->get($configuration->getGrid());
+
+        $form = $this->get("miky_grid.form.factory.batch_action")->createForm($grid, $configuration);
+        $form->handleRequest($request);
+        $batchAction = $form->get("batchAction")->getData();
+        if ($grid->hasBatchAction($batchAction)){
+            $idx = $request->get("idx");
+            if (!empty($idx)) {
+                $resources = $this->repository->findById($idx);
+                $camelizedAction = Inflector::classify($batchAction);
+                $finalAction = sprintf('batchAction%s', $camelizedAction);
+                if (!is_callable(array($this, $finalAction))) {
+                    throw new \RuntimeException(sprintf('A `%s::%s` method must be callable', get_class($this), $finalAction));
+                }
+                return call_user_func_array(array($this, $finalAction), array($resources, $configuration, $request));
+
+            }
+        }
+
+        return $this->redirectHandler->redirectToIndex($configuration);
+    }
+
+
+    /**
+     * @param ResourceInterface[] $resources
+     * @param RequestConfiguration $configuration
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function batchActionDelete($resources, RequestConfiguration $configuration, Request $request)
+    {
+        $em = $this->get("doctrine.orm.entity_manager");
+       foreach ($resources as $resource){
+           $em->remove($resource);
+       }
+       $em->flush();
+
+        return $this->redirectHandler->redirectToIndex($configuration);
     }
 
     /**
@@ -273,8 +323,7 @@ class ResourceController extends Controller
                 $this->metadata->getName() => $newResource,
                 'form' => $form->createView(),
             ])
-            ->setTemplate($configuration->getTemplate(ResourceActions::CREATE . '.html'))
-        ;
+            ->setTemplate($configuration->getTemplate(ResourceActions::CREATE . '.html'));
 
         return $this->viewHandler->handle($configuration, $view);
     }
@@ -335,8 +384,7 @@ class ResourceController extends Controller
                 $this->metadata->getName() => $resource,
                 'form' => $form->createView(),
             ])
-            ->setTemplate($configuration->getTemplate(ResourceActions::UPDATE . '.html'))
-        ;
+            ->setTemplate($configuration->getTemplate(ResourceActions::UPDATE . '.html'));
 
         return $this->viewHandler->handle($configuration, $view);
     }
@@ -376,15 +424,6 @@ class ResourceController extends Controller
         return $this->redirectHandler->redirectToIndex($configuration, $resource);
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return Response
-     */
-    public function batchAction(Request $request)
-    {
-       // @TODO
-    }
 
     /**
      * @param Request $request
@@ -436,6 +475,7 @@ class ResourceController extends Controller
     {
         return $this->toggle($request, true);
     }
+
     /**
      * @param Request $request
      *

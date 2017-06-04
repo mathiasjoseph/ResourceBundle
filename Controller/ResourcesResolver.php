@@ -38,4 +38,5 @@ class ResourcesResolver implements ResourcesResolverInterface
         }
         return $repository->createPaginator($requestConfiguration->getCriteria(), $requestConfiguration->getSorting());
     }
+
 }

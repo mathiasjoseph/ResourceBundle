@@ -23,4 +23,5 @@ interface ResourcesResolverInterface
      * @return mixed
      */
     public function getResources(RequestConfiguration $requestConfiguration, RepositoryInterface $repository);
+
 }

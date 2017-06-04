@@ -175,7 +175,7 @@ class ResourceLoader implements LoaderInterface
         if ($isApi && in_array($actionName, ['show', 'create', 'update'])) {
             $defaults['_miky']['serialization_groups'] = ['Default', 'Detailed'];
         }
-        if (isset($configuration['grid']) && 'index' === $actionName) {
+        if (isset($configuration['grid']) && ('index' === $actionName || 'batch' === $actionName) ) {
             $defaults['_miky']['grid'] = $configuration['grid'];
         }
         if (isset($configuration['form']) && in_array($actionName, ['create', 'update'])) {

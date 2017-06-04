@@ -60,7 +60,7 @@
 
         <service id="miky.form.extension.collection"
                  class="%miky.form.extension.collection.class%">
-            <tag name="form.type_extension" alias="collection" />
+            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\CollectionType" />
         </service>
 
         <service id="miky.validator.enabled" class="%miky.validator.enabled.class%">

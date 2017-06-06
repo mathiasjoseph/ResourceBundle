@@ -18,20 +18,20 @@
 
 {% macro edit(url, message) %}
 <a href="{{ url }}" class="btn btn-primary">
-    <i class="glyphicon glyphicon-pencil"></i><span>{{ message is empty ? 'miky.ui.edit'|trans : message }}</span>
+    <i class="glyphicon glyphicon-pencil"></i><span>{{ message is empty ? 'miky_core.edit'|trans : message }}</span>
 </a>
 {% endmacro %}
 
 {% macro delete(url, message, disabled=false, modal=true) %}
 {% if disabled %}
 <span class="btn btn-danger disabled">
-    <i class="glyphicon glyphicon-trash"></i><span>{{ message is empty ? 'miky.ui.delete'|trans : message }}</span>
+    <i class="glyphicon glyphicon-trash"></i><span>{{ message is empty ? 'miky_core.delete'|trans : message }}</span>
 </span>
 {% else %}
 <form action="{{ url }}" method="post" class="delete-action-form" novalidate>
     <input type="hidden" name="_method" value="DELETE">
     <button class="btn btn-danger{% if modal %} btn-confirm{% endif %}" type="submit">
-        <i class="glyphicon glyphicon-trash"></i> <span>{{ message is empty ? 'miky.ui.delete'|trans : message }}</span>
+        <i class="glyphicon glyphicon-trash"></i> <span>{{ message is empty ? 'miky_core.delete'|trans : message }}</span>
     </button>
 </form>
 {% endif %}
@@ -39,7 +39,7 @@
 
 {% macro manage(url, message) %}
 <a href="{{ url }}" class="btn btn-success">
-    <i class="glyphicon glyphicon-folder-open"></i><span>{{ message is empty ? 'miky.ui.manage'|trans : message }}</span>
+    <i class="glyphicon glyphicon-folder-open"></i><span>{{ message is empty ? 'miky_core.manage'|trans : message }}</span>
 </a>
 {% endmacro %}
 

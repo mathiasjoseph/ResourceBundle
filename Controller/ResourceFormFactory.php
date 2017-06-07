@@ -37,9 +37,6 @@ class ResourceFormFactory implements ResourceFormFactoryInterface
     {
         $formType = $requestConfiguration->getFormType();
 
-        if (false !== strpos($formType, '\\')) {
-            $formType = new $formType();
-        }
 
         $formOptions = $requestConfiguration->getFormOptions();
 
@@ -47,6 +44,6 @@ class ResourceFormFactory implements ResourceFormFactoryInterface
             return $this->formFactory->create($formType, $resource, $formOptions);
         }
 
-        return $this->formFactory->createNamed('', $formType, $resource, array_merge($formOptions, ['csrf_protection' => false]));
+        return $this->formFactory->create($formType, $resource, array_merge($formOptions, ['csrf_protection' => false]));
     }
 }

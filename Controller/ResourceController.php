@@ -12,6 +12,7 @@
 namespace Miky\Bundle\ResourceBundle\Controller;
 
 use Doctrine\Common\Inflector\Inflector;
+use Gaia\Bundle\FormationBundle\Form\Type\Admin\FormationAdminType;
 use Miky\Component\Resource\Factory\FactoryInterface;
 use Miky\Component\Resource\Metadata\MetadataInterface;
 use Miky\Component\Resource\Model\ResourceInterface;
@@ -19,6 +20,7 @@ use Miky\Component\Resource\Repository\RepositoryInterface;
 use Miky\Component\Resource\ResourceActions;
 use Doctrine\Common\Persistence\ObjectManager;
 use FOS\RestBundle\View\View;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -145,6 +147,7 @@ class ResourceController extends Controller
         StateMachineInterface $stateMachine
     )
     {
+
         $this->metadata = $metadata;
         $this->requestConfigurationFactory = $requestConfigurationFactory;
         $this->viewHandler = $viewHandler;
@@ -335,6 +338,7 @@ class ResourceController extends Controller
      */
     public function updateAction(Request $request)
     {
+        $this->createForm(FormationAdminType::class);
         $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
 
         $this->isGrantedOr403($configuration, ResourceActions::UPDATE);

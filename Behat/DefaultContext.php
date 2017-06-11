@@ -11,8 +11,6 @@
 
 namespace Miky\Bundle\ResourceBundle\Behat;
 
-use Miky\Component\Resource\Factory\FactoryInterface;
-use Miky\Component\Resource\Repository\RepositoryInterface;
 use Behat\Behat\Context\Context;
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Exception\ElementNotFoundException;
@@ -21,6 +19,8 @@ use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory as FakerFactory;
 use Faker\Generator;
+use Miky\Component\Resource\Factory\FactoryInterface;
+use Miky\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Intl\Intl;

@@ -11,8 +11,8 @@
 
 namespace Miky\Bundle\ResourceBundle\Form\Type;
 
-use Miky\Bundle\ResourceBundle\MikyResourceBundle;
 use Miky\Bundle\ResourceBundle\DependencyInjection\Driver\Exception\UnknownDriverException;
+use Miky\Bundle\ResourceBundle\MikyResourceBundle;
 use Miky\Component\Resource\Metadata\MetadataInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;

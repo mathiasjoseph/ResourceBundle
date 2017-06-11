@@ -11,10 +11,9 @@
 
 namespace Miky\Bundle\ResourceBundle\Routing;
 
+use Gedmo\Sluggable\Util\Urlizer;
 use Miky\Component\Resource\Metadata\MetadataInterface;
 use Miky\Component\Resource\Metadata\RegistryInterface;
-use Gedmo\Sluggable\Util\Urlizer;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;

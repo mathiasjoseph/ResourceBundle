@@ -11,14 +11,14 @@
 
 namespace Miky\Bundle\ResourceBundle\EventListener;
 
-use Miky\Component\Resource\Model\TranslatableInterface;
-use Miky\Component\Resource\Model\TranslationInterface;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
+use Miky\Component\Resource\Model\TranslatableInterface;
+use Miky\Component\Resource\Model\TranslationInterface;
 
 /**
  * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk>

@@ -11,10 +11,10 @@
 
 namespace Miky\Bundle\ResourceBundle\EventListener;
 
-use Miky\Component\Resource\ResourceActions;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\View\ViewHandlerInterface as RestViewHandlerInterface;
+use Miky\Component\Resource\ResourceActions;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

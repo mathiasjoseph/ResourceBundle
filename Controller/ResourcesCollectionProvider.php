@@ -11,9 +11,9 @@
 
 namespace Miky\Bundle\ResourceBundle\Controller;
 
-use Miky\Component\Resource\Repository\RepositoryInterface;
 use Hateoas\Configuration\Route;
 use Hateoas\Representation\Factory\PagerfantaFactory;
+use Miky\Component\Resource\Repository\RepositoryInterface;
 use Pagerfanta\Pagerfanta;
 
 

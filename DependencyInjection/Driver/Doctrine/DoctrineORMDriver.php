@@ -11,10 +11,10 @@
 
 namespace Miky\Bundle\ResourceBundle\DependencyInjection\Driver\Doctrine;
 
-use Miky\Bundle\ResourceBundle\MikyResourceBundle;
 use Miky\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Miky\Bundle\ResourceBundle\Doctrine\ORM\Form\Builder\DefaultFormBuilder;
 use Miky\Bundle\ResourceBundle\Form\Type\DefaultResourceType;
+use Miky\Bundle\ResourceBundle\MikyResourceBundle;
 use Miky\Component\Resource\Metadata\MetadataInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;

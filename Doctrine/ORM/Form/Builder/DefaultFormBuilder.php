@@ -11,11 +11,11 @@
 
 namespace Miky\Bundle\ResourceBundle\Doctrine\ORM\Form\Builder;
 
-use Miky\Bundle\ResourceBundle\Form\Builder\DefaultFormBuilderInterface;
-use Miky\Component\Resource\Metadata\MetadataInterface;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
+use Miky\Bundle\ResourceBundle\Form\Builder\DefaultFormBuilderInterface;
+use Miky\Component\Resource\Metadata\MetadataInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
 

@@ -11,8 +11,8 @@
 
 namespace Miky\Bundle\ResourceBundle\DependencyInjection;
 
-use Miky\Bundle\ResourceBundle\MikyResourceBundle;
 use Miky\Bundle\ResourceBundle\Controller\ResourceController;
+use Miky\Bundle\ResourceBundle\MikyResourceBundle;
 use Miky\Component\Resource\Factory\Factory;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;

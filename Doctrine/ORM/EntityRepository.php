@@ -11,10 +11,10 @@
 
 namespace Miky\Bundle\ResourceBundle\Doctrine\ORM;
 
-use Miky\Component\Resource\Model\ResourceInterface;
-use Miky\Component\Resource\Repository\RepositoryInterface;
 use Doctrine\ORM\EntityRepository as BaseEntityRepository;
 use Doctrine\ORM\QueryBuilder;
+use Miky\Component\Resource\Model\ResourceInterface;
+use Miky\Component\Resource\Repository\RepositoryInterface;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;

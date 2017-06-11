@@ -12,15 +12,14 @@
 namespace Miky\Bundle\ResourceBundle\Controller;
 
 use Doctrine\Common\Inflector\Inflector;
+use Doctrine\Common\Persistence\ObjectManager;
+use FOS\RestBundle\View\View;
 use Gaia\Bundle\FormationBundle\Form\Type\Admin\FormationAdminType;
 use Miky\Component\Resource\Factory\FactoryInterface;
 use Miky\Component\Resource\Metadata\MetadataInterface;
 use Miky\Component\Resource\Model\ResourceInterface;
 use Miky\Component\Resource\Repository\RepositoryInterface;
 use Miky\Component\Resource\ResourceActions;
-use Doctrine\Common\Persistence\ObjectManager;
-use FOS\RestBundle\View\View;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -288,7 +287,7 @@ class ResourceController extends Controller
 
         $form = $this->resourceFormFactory->create($configuration, $newResource);
 
-        if ($request->isMethod('POST') && $form->submit($request)->isValid()) {
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $newResource = $form->getData();
 
             $event = $this->eventDispatcher->dispatchPreEvent(ResourceActions::CREATE, $configuration, $newResource);
@@ -345,8 +344,8 @@ class ResourceController extends Controller
         $resource = $this->findOr404($configuration);
 
         $form = $this->resourceFormFactory->create($configuration, $resource);
+        if (in_array($request->getMethod(), ['POST', 'PUT', 'PATCH']) && $form->handleRequest($request)->isValid()) {
 
-        if (in_array($request->getMethod(), ['POST', 'PUT', 'PATCH']) && $form->submit($request, !$request->isMethod('PATCH'))->isValid()) {
             $resource = $form->getData();
 
             $event = $this->eventDispatcher->dispatchPreEvent(ResourceActions::UPDATE, $configuration, $resource);

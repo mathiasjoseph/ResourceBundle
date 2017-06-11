@@ -11,9 +11,9 @@
 
 namespace Miky\Bundle\ResourceBundle\EventListener;
 
-use Miky\Component\Resource\Metadata\RegistryInterface;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Mapping\ClassMetadata;
+use Miky\Component\Resource\Metadata\RegistryInterface;
 
 /**
  * @author Ben Davies <ben.davies@gmail.com>

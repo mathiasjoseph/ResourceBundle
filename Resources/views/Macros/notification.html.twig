@@ -1,5 +1,7 @@
 {# Display all the flashes messages #}
+
 {% macro flashes() %}
+    {% import _self as macros %}
     {% for type, flashes in app.session.flashBag.all %}
         <div id="flashesMessage" class="alert alert-{{ type }}">
             <ul class="list-unstyled">
@@ -40,21 +42,26 @@
 {% endmacro %}
 
 {% macro danger(text) %}
-    {{ _self.alert(text, 'danger') }}
+    {% import _self as macros %}
+    {{ macros.alert(text, 'danger') }}
 {% endmacro %}
 
 {% macro error(text) %}
-    {{ _self.danger(text) }}
+    {% import _self as macros %}
+    {{ macros.danger(text) }}
 {% endmacro %}
 
 {% macro warning(text) %}
-    {{ _self.alert(text, 'warning') }}
+    {% import _self as macros %}
+    {{ macros.alert(text, 'warning') }}
 {% endmacro %}
 
 {% macro success(text) %}
-    {{ _self.alert(text, 'success') }}
+    {% import _self as macros %}
+    {{ macros.alert(text, 'success') }}
 {% endmacro %}
 
 {% macro info(text) %}
-    {{ _self.alert(text, 'info') }}
+    {% import _self as macros %}
+    {{ macros.alert(text, 'info') }}
 {% endmacro %}

@@ -337,7 +337,6 @@ class ResourceController extends Controller
      */
     public function updateAction(Request $request)
     {
-        $this->createForm(FormationAdminType::class);
         $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
 
         $this->isGrantedOr403($configuration, ResourceActions::UPDATE);

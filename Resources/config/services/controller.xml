@@ -55,6 +55,7 @@
         </service>
         <service id="miky.resource_controller.form_factory" class="%miky.resource_controller.form_factory.class%">
             <argument type="service" id="form.factory" />
+            <argument type="service" id="service_container"/>
         </service>
         <service id="miky.resource_controller.redirect_handler" class="%miky.resource_controller.redirect_handler.class%">
             <argument type="service" id="router" />

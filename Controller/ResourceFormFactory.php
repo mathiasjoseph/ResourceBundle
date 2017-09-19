@@ -11,7 +11,9 @@
 
 namespace Miky\Bundle\ResourceBundle\Controller;
 
+use Miky\Bundle\CoreBundle\Form\Factory\FormFactory;
 use Miky\Component\Resource\Model\ResourceInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 
 
@@ -23,11 +25,17 @@ class ResourceFormFactory implements ResourceFormFactoryInterface
     private $formFactory;
 
     /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
      * @param FormFactoryInterface $formFactory
      */
-    public function __construct(FormFactoryInterface $formFactory)
+    public function __construct(FormFactoryInterface $formFactory, ContainerInterface $container)
     {
         $this->formFactory = $formFactory;
+        $this->container = $container;
     }
 
     /**
@@ -36,9 +44,20 @@ class ResourceFormFactory implements ResourceFormFactoryInterface
     public function create(RequestConfiguration $requestConfiguration, ResourceInterface $resource)
     {
         $formType = $requestConfiguration->getFormType();
-
-
         $formOptions = $requestConfiguration->getFormOptions();
+
+        if ($this->container->has($formType)){
+            /** @var FormFactory $factory */
+            $factory = $this->container->get($formType);
+            if ($factory instanceof FormFactory){
+                if ($requestConfiguration->isHtmlRequest()) {
+                    return $factory->createForm($resource, $formOptions);
+                }
+                return $factory->createForm($resource, array_merge($formOptions, ['csrf_protection' => false]));
+
+            }
+        }
+
 
         if ($requestConfiguration->isHtmlRequest()) {
             return $this->formFactory->create($formType, $resource, $formOptions);
